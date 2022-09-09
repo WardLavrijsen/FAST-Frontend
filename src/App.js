@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and see if this changes
+          Edit <code>src/App.js</code> And WOC test data kijken
         </p>
         <a
           className="App-link"
