@@ -1,4 +1,4 @@
-import UserBlock from "./UserBlock";
+import { Icon } from "@iconify/react";
 
 const styles = {
   //side nav
@@ -20,13 +20,16 @@ function Nav() {
       <img alt="Forza-Logo" src="images/ForzaLogo.svg" />
       <ul>
         <li>
-          <a href="index.html">Home</a>
+          <a href="index.html">
+            <Icon icon="akar-icons:ticket" />
+            Ticketpartners
+          </a>
         </li>
         <li>
-          <a href="index.html">WOC</a>
+          <a href="index.html">Competities</a>
         </li>
         <li>
-          <a href="index.html">WOC</a>
+          <a href="index.html">Exporteren</a>
         </li>
       </ul>
     </nav>
