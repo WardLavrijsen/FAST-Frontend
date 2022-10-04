@@ -1,8 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Nav from "./components/Nav";
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
