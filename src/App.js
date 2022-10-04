@@ -1,9 +1,7 @@
 import "./App.css";
 
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import axios from "axios";
@@ -16,11 +14,13 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const data = await axios.get("http://localhost:8080/api/leagues");
+        const res = await axios.get("http://localhost:8080/api/leagues");
+        console.log(res);
         const randomnumber = Math.floor(Math.random() * 700);
         for (let i = randomnumber; i < randomnumber + 16; i++) {
-          setData((prev) => [...prev, data.data.response[i]]);
+          setData((prev) => [...prev, res.data.response[i]]);
         }
+
         setButtonVisible("none");
       } catch (error) {
         console.error("error");
