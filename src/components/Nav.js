@@ -5,7 +5,9 @@ const styles = {
   //side nav
   nav: {
     display: "flex",
-
+    position: "fixed",
+    top: 0,
+    left: 0,
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100vh",

@@ -31,27 +31,27 @@ function App() {
 
   return (
     <div className="main">
-      <header className="App-header">
-        <button
-          style={{
-            color: "black",
-            backgroundColor: "white",
-            display: buttonVisible,
-          }}
-        >
-          Get Leagues
-        </button>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gridGap: "1rem",
-            width: "100%",
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          {data.map((item) => (
+      <button
+        style={{
+          color: "black",
+          backgroundColor: "white",
+          display: buttonVisible,
+        }}
+      >
+        Get Leagues
+      </button>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gridGap: "1rem",
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+        }}
+      >
+        {data.map((item) => (
+          <a href={"/clubs?id=" + item.league.id}>
             <Card
               key={item.league.id}
               style={{
@@ -75,9 +75,9 @@ function App() {
                 </Typography>
               </CardContent>
             </Card>
-          ))}
-        </div>
-      </header>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
