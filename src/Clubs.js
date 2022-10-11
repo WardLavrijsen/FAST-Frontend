@@ -46,7 +46,7 @@ function Clubs() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(6, 1fr)",
+          gridTemplateColumns: "repeat(5, 1fr)",
           gridGap: "1rem",
           width: "100%",
           maxWidth: "1200px",
