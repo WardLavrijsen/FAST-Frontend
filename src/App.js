@@ -1,5 +1,3 @@
-import { useRouteError } from "react-router-dom";
-
 const styles = {
   ErrorPage: {
     display: "flex",

@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 function Clubs() {
   const [data, setData] = useState([]);
   const [buttonVisible, setButtonVisible] = useState("block");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [clubs, setClubs] = useState([]);
   const league = {
     id: searchParams.get("id"),

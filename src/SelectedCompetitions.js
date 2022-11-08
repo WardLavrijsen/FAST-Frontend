@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 function SelectedCompetitions() {
   const [data, setData] = useState([]);
   const [buttonVisible, setButtonVisible] = useState("block");
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [clubs, setClubs] = useState([]);
+  const [searchParams] = useSearchParams();
+  const [clubs] = useState([]);
 
   useEffect(() => {
     (async () => {
