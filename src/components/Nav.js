@@ -1,5 +1,7 @@
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import axios from "axios";
 
 const styles = {
   //side nav
@@ -36,10 +38,23 @@ const styles = {
 
 function Nav() {
   const [year, setYear] = useState(2022);
+  const [data, setData] = useState([]);
 
   const handleChange = (event) => {
     setYear(event.target.value);
   };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/api/competitions");
+        setData(res.data);
+      } catch (error) {
+        console.error("error");
+        console.error(error);
+      }
+    })();
+  }, []);
 
   return (
     <nav className="nav" style={styles.nav}>
@@ -55,7 +70,7 @@ function Nav() {
             </a>
           </li>
           <li>
-            <a href="/competities" className="text-white">
+            <a href="/competitions" className="text-white">
               <Icon
                 icon="emojione-monotone:soccer-ball"
                 className="inline-block mr-2"
@@ -84,66 +99,21 @@ function Nav() {
           <option value={2024}>2024/2025</option>
         </select>
         <ul className="">
-          <li className="mb-1">
-            <a href="index.html" className="text-white">
-              <img
-                alt="premierleague"
-                src="images/premier.svg"
-                className="inline-block mr-2"
-              />
-              Premier League
-            </a>
-          </li>
-          <li className="mb-1">
-            <a href="index.html" className="text-white">
-              <img
-                alt="laliga"
-                src="images/liga.svg"
-                className="inline-block mr-2"
-              />
-              La Liga
-            </a>
-          </li>
-          <li className="mb-1">
-            <a href="index.html" className="text-white">
-              <img
-                alt="bundesliga"
-                src="images/bundes.svg"
-                className="inline-block mr-2"
-              />
-              BundesLiga
-            </a>
-          </li>
-          <li className="mb-1">
-            <a href="index.html" className="text-white">
-              <img
-                alt="seriea"
-                src="images/serieA.svg"
-                className="inline-block mr-2"
-              />
-              Serie A
-            </a>
-          </li>
-          <li className="mb-1">
-            <a href="index.html" className="text-white">
-              <img
-                alt="premiera"
-                src="images/premieraliga.svg"
-                className="inline-block mr-2"
-              />
-              Premiera Liga
-            </a>
-          </li>
-          <li className="mb-1">
-            <a href="index.html" className="text-white">
-              <img
-                alt="premiership"
-                src="images/premiership.svg"
-                className="inline-block mr-2"
-              />
-              Premiership
-            </a>
-          </li>
+          {data.map((item) => (
+            <li key={item.id} className="mb-1">
+              <a
+                href={"/selectedcompetitions?id=" + item.id}
+                className="text-white"
+              >
+                <img
+                  alt="premierleague"
+                  src={item.logo}
+                  className="inline-block mr-2 w-10"
+                />
+                {item.name}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
       <button

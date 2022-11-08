@@ -4,6 +4,8 @@ import "./index.css";
 import Nav from "./components/Nav";
 import App from "./App";
 import Clubs from "./Clubs";
+import Competition from "./Competition";
+import SelectedCompetitions from "./SelectedCompetitions";
 import ErrorPage from "./ErrorPage";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
@@ -17,12 +19,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/competitions",
+    element: <Competition />,
+  },
+  {
     path: "/about",
     element: <App />,
   },
   {
     path: "/clubs",
     element: <Clubs />,
+  },
+  {
+    path: "/selectedcompetitions",
+    element: <SelectedCompetitions />,
   },
 ]);
 

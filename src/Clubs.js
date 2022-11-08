@@ -13,7 +13,20 @@ function Clubs() {
   const [data, setData] = useState([]);
   const [buttonVisible, setButtonVisible] = useState("block");
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get("id"));
+  const [clubs, setClubs] = useState([]);
+  const league = {
+    id: searchParams.get("id"),
+    name: searchParams.get("name"),
+    logo: searchParams.get("logo"),
+  };
+
+  const addClub = (club) => {
+    if (clubs.find((c) => c.id === club.id)) {
+      setClubs(clubs.filter((c) => c.id !== club.id));
+    } else {
+      setClubs([...clubs, club]);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -21,7 +34,6 @@ function Clubs() {
         const res = await axios.get(
           "http://localhost:8080/api/clubs/" + searchParams.get("id")
         );
-        console.log(res.data.response);
         setData(res.data.response);
 
         setButtonVisible("none");
@@ -31,6 +43,25 @@ function Clubs() {
       }
     })();
   }, []);
+
+  const handleAdd = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/api/game/" + searchParams.get("id"),
+        {
+          competition: league,
+          clubs: clubs,
+        }
+      );
+      console.log(res);
+      if (res.status === 200) {
+        window.location.href = "/selectedcompetitions?id=" + league.id;
+      }
+    } catch (error) {
+      console.error("error");
+      console.error(error);
+    }
+  };
 
   return (
     <div className="main mt-12">
@@ -43,6 +74,9 @@ function Clubs() {
       >
         Get Clubs
       </button>
+
+      <h1 className="Title">Kies de clubs</h1>
+
       <div
         style={{
           display: "grid",
@@ -54,30 +88,48 @@ function Clubs() {
         }}
       >
         {data.map((item) => (
-          <Card
+          <button
             key={item.team.id}
-            style={{
-              borderRadius: "10px",
-              border: "1px solid #000",
-            }}
-            sx={{ minWidth: 275 }}
+            onClick={() =>
+              addClub({
+                id: item.team.id,
+                name: item.team.name,
+                logo: item.team.logo,
+              })
+            }
           >
-            <CardContent
+            <Card
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "center",
-                height: "100%",
+                backgroundColor: clubs.find((club) => club.id === item.team.id)
+                  ? "#ecf0f1"
+                  : "white",
+                borderRadius: "10px",
+                border: "1px solid #000",
               }}
+              sx={{ minWidth: 275 }}
             >
-              <img alt="logo" src={item.team.logo}></img>
-              <Typography variant="h5" component="div">
-                {item.team.name}
-              </Typography>
-            </CardContent>
-          </Card>
+              <CardContent
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <img alt="logo" src={item.team.logo}></img>
+                <Typography variant="h5" component="div">
+                  {item.team.name}
+                </Typography>
+              </CardContent>
+            </Card>
+          </button>
         ))}
+      </div>
+      <div className="button-box">
+        <button onClick={handleAdd} className="Button">
+          Submit
+        </button>
       </div>
     </div>
   );
