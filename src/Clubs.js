@@ -42,7 +42,7 @@ function Clubs() {
         console.error(error);
       }
     })();
-  }, []);
+  }, [searchParams]);
 
   const handleAdd = async () => {
     try {

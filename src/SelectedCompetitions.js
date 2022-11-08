@@ -30,7 +30,7 @@ function SelectedCompetitions() {
         console.error(error);
       }
     })();
-  }, []);
+  }, [searchParams]);
 
   return (
     <div className="main mt-12">
