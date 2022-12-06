@@ -32,7 +32,8 @@ function Clubs() {
     (async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/clubs/" + searchParams.get("id")
+          "https://forza-automation-system-for-tickets.fly.dev/api/clubs/" +
+            searchParams.get("id")
         );
         setData(res.data.response);
 
@@ -47,7 +48,8 @@ function Clubs() {
   const handleAdd = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/game/" + searchParams.get("id"),
+        "https://forza-automation-system-for-tickets.fly.dev/api/game/" +
+          searchParams.get("id"),
         {
           competition: league,
           clubs: clubs,
