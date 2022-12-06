@@ -47,7 +47,9 @@ function Nav() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("http://localhost:8080/api/competitions");
+        const res = await axios.get(
+          "https://forza-automation-system-for-tickets.fly.dev/api/competitions"
+        );
         setData(res.data);
       } catch (error) {
         console.error("error");

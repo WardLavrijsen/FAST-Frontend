@@ -4,6 +4,7 @@ import "./index.css";
 import Nav from "./components/Nav";
 import App from "./App";
 import Clubs from "./Clubs";
+import Games from "./Games";
 import Competition from "./Competition";
 import SelectedCompetitions from "./SelectedCompetitions";
 import ErrorPage from "./ErrorPage";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/clubs",
     element: <Clubs />,
+  },
+  {
+    path: "/games",
+    element: <Games />,
   },
   {
     path: "/selectedcompetitions",

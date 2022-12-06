@@ -19,7 +19,8 @@ function SelectedCompetitions() {
     (async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/competitions/" + searchParams.get("id")
+          "https://forza-automation-system-for-tickets.fly.dev/api/competitions/" +
+            searchParams.get("id")
         );
         console.log(res);
         setData(res.data);
@@ -57,32 +58,36 @@ function SelectedCompetitions() {
         }}
       >
         {data.map((item) => (
-          <Card
-            key={item.id}
-            style={{
-              backgroundColor: clubs.find((club) => club.id === item.team.id)
-                ? "#ecf0f1"
-                : "white",
-              borderRadius: "10px",
-              border: "1px solid #000",
-            }}
-            sx={{ minWidth: 275 }}
+          <a
+            href={`/games?clubid=${item.id}&leagueid=${searchParams.get("id")}`}
           >
-            <CardContent
+            <Card
+              key={item.id}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "center",
-                height: "100%",
+                backgroundColor: clubs.find((club) => club.id === item.team.id)
+                  ? "#ecf0f1"
+                  : "white",
+                borderRadius: "10px",
+                border: "1px solid #000",
               }}
+              sx={{ minWidth: 275 }}
             >
-              <img alt="logo" src={item.logo}></img>
-              <Typography variant="h5" component="div">
-                {item.name}
-              </Typography>
-            </CardContent>
-          </Card>
+              <CardContent
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <img alt="logo" src={item.logo}></img>
+                <Typography variant="h5" component="div">
+                  {item.name}
+                </Typography>
+              </CardContent>
+            </Card>
+          </a>
         ))}
         <a href={"/clubs?id=" + searchParams.get("id")}>
           <Card
