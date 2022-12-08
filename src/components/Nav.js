@@ -27,22 +27,18 @@ const styles = {
   },
   button: {
     backgroundColor: "#91B100",
-    color: "white",
+    color: "#91B100",
     fontSize: "1.7rem",
     marginTop: "2rem",
     fontWeight: "500",
     paddingTop: "0.5rem",
     paddingBottom: "0.5rem",
+    cursor: "none",
   },
 };
 
 function Nav() {
-  const [year, setYear] = useState(2022);
   const [data, setData] = useState([]);
-
-  const handleChange = (event) => {
-    setYear(event.target.value);
-  };
 
   useEffect(() => {
     (async () => {
@@ -65,12 +61,12 @@ function Nav() {
       </a>
       <div className="w-full">
         <ul className="mb-12">
-          <li>
+          {/* <li>
             <a href="/ticketpartners" className="text-white">
               <Icon icon="akar-icons:ticket" className="inline-block mr-2" />
               Ticketpartners
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="/competitions" className="text-white">
               <Icon
@@ -80,7 +76,7 @@ function Nav() {
               Competities
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="/exporteren" className="text-white">
               <Icon
                 icon="ph:microsoft-excel-logo"
@@ -88,18 +84,8 @@ function Nav() {
               />
               Exporteren
             </a>
-          </li>
+          </li> */}
         </ul>
-        <select
-          value={year}
-          onChange={handleChange}
-          style={styles.select}
-          className="border-white border-solid border-2 rounded-md mb-4 w-full"
-        >
-          <option value={2022}>2022/2023</option>
-          <option value={2023}>2023/2024</option>
-          <option value={2024}>2024/2025</option>
-        </select>
         <ul className="">
           {data.map((item) => (
             <li key={item.id} className="mb-1">
@@ -118,13 +104,8 @@ function Nav() {
           ))}
         </ul>
       </div>
-      <button
-        className=" border-2 border-white border-solid"
-        style={styles.button}
-      >
-        <a href="index.html" className="text-white">
-          Uitloggen
-        </a>
+      <button style={styles.button}>
+        <a href="index.html">Uitloggen</a>
       </button>
     </nav>
   );
