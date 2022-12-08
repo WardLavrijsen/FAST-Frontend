@@ -27,3 +27,7 @@ jobs:
         with:
           build: npm run build
           start: npm start
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_CLOUD}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
