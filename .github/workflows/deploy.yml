@@ -13,10 +13,7 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-
       - run: npm run build
-      - run: npm start & wait-on http://localhost:3000
-      - run: npx cypress run --record --key ${{ secrets.CYPRESS_CLOUD }}
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting

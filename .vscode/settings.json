@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///Users/wardlavrijsen/code/Fontys/Semester%203/Individueel%20Project/frontend/.github/workflows/deploy.yml"
+  }
+}
