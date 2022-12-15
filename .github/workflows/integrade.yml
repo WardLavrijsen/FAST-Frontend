@@ -12,9 +12,10 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 16
-      - run: npm install
+      - run: npm install && npm install -g @lhci/cli@0.8.x
       - run: npm test
       - run: npm run build
+      - run: lhci autorun
   cypress-run:
     runs-on: ubuntu-latest
     steps:
