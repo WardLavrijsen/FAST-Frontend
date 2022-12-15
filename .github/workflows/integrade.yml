@@ -12,10 +12,9 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 16
-      - run: npm install && npm install -g @lhci/cli@0.8.x
+      - run: npm install
       - run: npm test
       - run: npm run build
-      - run: lhci autorun
   cypress-run:
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +31,17 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_CLOUD}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+          name: Build
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
