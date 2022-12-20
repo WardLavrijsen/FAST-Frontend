@@ -80,6 +80,7 @@ function Clubs() {
       <h1 className="Title">Kies de clubs</h1>
 
       <div
+        id="grid-container"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(5, 1fr)",
