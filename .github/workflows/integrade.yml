@@ -42,6 +42,7 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 16
+      - run: npm install
       - run: npm run build
       - run: npm start
       - run: npm run loadtester artillerytest.yml
