@@ -44,7 +44,7 @@ jobs:
           node-version: 16
       - run: npm install
       - run: npm run build
-      - run: npm start
+      - run: npm start & wait-on http://localhost:3000
       - run: npm run loadtester artillerytest.yml
 
   sonarcloud:
