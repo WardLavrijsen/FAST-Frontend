@@ -1,0 +1,26 @@
+# run this test by executing npm run loadtester artillerytest.yml in a powershell terminal
+
+config:
+  target: "http://127.0.0.1:3000/"
+  phases:
+    - duration: 600
+      arrivalRate: 50
+    - duration: 60
+      arrivalRate: 5
+      name: Warm up
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up load
+    - duration: 600
+      arrivalRate: 50
+      name: Sustained load
+  ensure:
+    maxErrorRate: 1
+    max: 500
+
+scenarios:
+  - name: "Get Clubs"
+    flow:
+      - get:
+          url: "/"

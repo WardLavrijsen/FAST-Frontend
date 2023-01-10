@@ -33,6 +33,21 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
           name: Build
+
+  artillery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run build
+      - run: npm start & \
+          npx wait-on http://127.0.0.1:3000
+      - run: npm run loadtester artillerytest.yml
+
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
