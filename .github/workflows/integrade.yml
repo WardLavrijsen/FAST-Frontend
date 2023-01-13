@@ -33,6 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
           name: Build
+
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
